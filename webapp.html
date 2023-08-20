@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List Web App</title>
+    <link rel="stylesheet" href="webapp.css">
+</head>
+
+
+
+
+<body>
+    <div class="todo-app">
+        <h1>To-Do List</h1>
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Enter a task">
+            <button onclick="addTask()">Add</button>
+        </div>
+        <ul id="taskList"></ul>
+    </div>
+   
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskList = document.getElementById('taskList');
+            const taskText = taskInput.value.trim();
+        
+            if (taskText !== '') {
+                const taskItem = document.createElement('li');
+                taskItem.innerHTML = `
+                    <span>${taskText}</span>
+                    <button onclick="removeTask(this)">Remove</button>
+                `;
+                taskList.appendChild(taskItem);
+                taskInput.value = '';
+            }
+        }
+        
+        function removeTask(button) {
+            const taskList = document.getElementById('taskList');
+            const taskItem = button.parentNode;
+            taskList.removeChild(taskItem);
+        }
+        
+    </script>
+</body>
+
+</html>
